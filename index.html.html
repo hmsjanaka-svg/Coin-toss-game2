@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Coin Toss Game</title>
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #121212;
+  color: white;
+  text-align: center;
+  padding: 40px 20px;
+}
+button {
+  width: 100%;
+  max-width: 300px;
+  padding: 15px;
+  margin: 10px auto;
+  font-size: 18px;
+  border-radius: 12px;
+  border: none;
+}
+.heads { background: #4CAF50; }
+.tails { background: #2196F3; }
+.result { margin-top: 30px; font-size: 20px; }
+.coins { font-size: 28px; margin-bottom: 20px; }
+</style>
+</head>
+
+<body>
+
+<div class="coins">Coins: <span id="coins">1000</span></div>
+
+<button class="heads" onclick="play('Heads')">
+Bet Heads (100 coins)
+</button>
+
+<button class="tails" onclick="play('Tails')">
+Bet Tails (100 coins)
+</button>
+
+<div class="result" id="result"></div>
+
+<script>
+let coins = 1000;
+
+function play(choice) {
+  if (coins < 100) {
+    document.getElementById("result").innerText =
+      "Not enough coins!";
+    return;
+  }
+
+  const toss = Math.random() < 0.5 ? "Heads" : "Tails";
+
+  if (choice === toss) {
+    coins += 180;
+    document.getElementById("result").innerText =
+      "You WON! It was " + toss + " 🎉";
+  } else {
+    coins -= 100;
+    document.getElementById("result").innerText =
+      "You LOST! It was " + toss + " 😢";
+  }
+
+  document.getElementById("coins").innerText = coins;
+}
+</script>
+
+</body>
+</html>
